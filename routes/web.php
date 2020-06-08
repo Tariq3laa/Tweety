@@ -48,6 +48,25 @@ Route::get('test', function () {
     //     return "Don";
     // }
 
-    $a= \DB::table('users')->where('id', '=', 3)->value('avatar');
-    return asset('storage/app/'.$a);
+    // $a= \DB::table('users')->where('id', '=', 3)->value('avatar');
+    // return asset('storage/app/'.$a);
+
+    return route('img',['filename'=>'RkEQNZVxXZCNIK8lgRoIwglBVOqLsPEC0pmz9kFU.jpeg']);
+
+    return view('img');
 });
+
+Route::get('img/{filename}', function ($filename)
+{
+    $path = storage_path() . '/app/avatars/' . $filename;
+
+    if(!File::exists($path)) abort(404);
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+})->name('img');

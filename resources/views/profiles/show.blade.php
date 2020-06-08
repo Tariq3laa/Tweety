@@ -3,7 +3,7 @@
         <div class="relative">
             <img src="{{asset('public/images/default-profile-banner.jpg')}}" alt="" class="mb-2">
 
-            <img src="{{ $user->avatar }}" alt=""
+            <img src="{{ route('img',['filename'=>$user->avatar]) }}" alt=""
                 class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2" style="left: 50%"
                 width="150">
         </div>
