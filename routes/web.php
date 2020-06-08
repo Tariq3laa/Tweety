@@ -38,14 +38,16 @@ Route::get('/profiles/{user:username}', 'ProfilesController@show')->name(
 );
 
 Route::get('test', function () {
-    $h=\Hash::make('123456789');
-    $pass='123456789';
-    $ha=\DB::table('users')->where('id', '=', 3)->value('password');
-    if (\Hash::check(123456789, $ha)==true) {
-        if (\Hash::check(123456789, $ha)==true) {
-            return "Done";
-        }
-        return "Don";
-    }
-    
+    // $h=\Hash::make('123456789');
+    // $pass='123456789';
+    // $ha=\DB::table('users')->where('id', '=', 3)->value('password');
+    // if (\Hash::check(123456789, $ha)==true) {
+    //     if (\Hash::check(123456789, $ha)==true) {
+    //         return "Done";
+    //     }
+    //     return "Don";
+    // }
+
+    $a= \DB::table('users')->where('id', '=', 3)->value('avatar');
+    return asset('storage/app/'.$a);
 });

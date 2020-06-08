@@ -58,7 +58,16 @@ class ProfilesController extends Controller
             $attributes['avatar'] = request('avatar')->store('avatars');
         }
 
-        $user->update($attributes);
+        DB::table('users')->where('id', $user->id)
+                ->update([
+                    'name' => $attributes['name'],
+                    'username' => $attributes['username'],
+                    'email' => $attributes['email'],
+                    'password' => Hash::make($attributes['password']),
+                    'avatar' => $attributes['avatar'],
+                ]);
+
+        // $user->update($attributes);
 
         return redirect($user->path());
     }

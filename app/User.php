@@ -24,7 +24,10 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return asset($value ?: '/images/default-avatar.jpeg');
+        if ($value) {
+            return asset('storage/app/'.$value);
+        }
+        return asset('public/images/default-avatar.jpeg');
     }
 
     public function timeline()
